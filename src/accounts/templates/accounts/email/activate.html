@@ -1,0 +1,5 @@
+{% autoescape off %}
+Добро пожаловать на Portfolio Project, {{ user.first_name }},
+Пожалуйста, пройдите по ссылке ниже для подтверждения e-mail адреса:
+http ://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+{% endautoescape %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block styles %}
+<style>
+.banner {
+    background: lightblue url("https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=350&w=1260") no-repeat fixed center;
+}
+</style>
+{% endblock %}
+
+{% block banner %}
+<div class="banner position-relative overflow-hidden text-center bg-danger m-0 m-md-5">
+    <div class="col-md-5 p-lg-5 mx-auto my-5 bg-dark">
+        <h1 class="display-5 font-weight-bold text-light">Регистрация</h1>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="row px-0 flex-column overflow-hidden">
+    <div class="bg-dark  text-white overflow-hidden  col-12 col-md-5 p-5 mb-2 mx-auto">
+        <div class="my-3 py-3">
+            <form class='form' action="{% url 'account:registration' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" aria-describedby="email-help" class="form-control" id="email"
+                        placeholder="Введите свою почту" name='email'>
+                    <small id="email-help" class="form-text text-muted">{{form.email.errors}}</small>
+
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Номер телефона</label>
+                    <input type="tel" aria-describedby="phone-help" class="form-control" id="phone_number"
+                        placeholder="Введите свой номер телефона" name='phone_number'>
+                    <small id="phone-help" class="form-text text-muted">{{form.phone_number.errors}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Пароль</label>
+                    <input type="password" aria-describedby="pass1-help" class="form-control" id="password1"
+                        placeholder="Введите свой пароль" name='password1'>
+                    <small id="pass1-help" class="form-text text-muted">{{form.password1.errors}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Подтверждение пароля</label>
+                    <input type="password" aria-describedby="pass2-help" class="form-control" id="password2"
+                        placeholder="Повторите свой пароль" name='password2'>
+                    <small id="pass2-help" class="form-text text-muted">{{form.password2.errors}}</small>
+                </div>
+                <button type="submit" class="btn btn-outline-light">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

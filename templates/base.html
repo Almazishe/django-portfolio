@@ -16,6 +16,16 @@
 
 <body>
     {% include 'components/navbar.html' %}
+    <div class='container d-none d-md-block '>
+        <div class='px-4 d-flex flex-wrap mt-2'>
+            <a class="btn btn-outline-dark m-1" href="#">команды</a>
+            <a class="btn btn-outline-dark m-1" href="#">проекты</a>
+            <a class="btn btn-outline-dark m-1" href="#">сокомандники</a>
+            <a class="btn btn-outline-dark m-1" href="#">портфолио</a>
+            <a class="btn btn-outline-dark m-1" href="#">создать команду</a>
+            <a class="btn btn-outline-dark m-1" href="#">создать портфолио</a>
+        </div>
+    </div>
     <div class="p-0 container">
         {% block banner %} {% endblock %}
     </div>

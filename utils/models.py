@@ -16,6 +16,18 @@ class BaseModel(models.Model):
     def __str__(self) -> str:
         return str(self.uuid)
 
+class OnlyUniqueNameModel(models.Model):
+    """ Модель только с названием """
+
+    name = models.CharField("Название", max_length=255, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        abstract = True
+
+    def __str__(self):
+        return f'{self.name}'
+
 
 class DateModel(models.Model):
     created_at = models.DateTimeField(

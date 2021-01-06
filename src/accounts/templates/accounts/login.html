@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+.banner {
+    background: lightblue url("https://images.pexels.com/photos/4107748/pexels-photo-4107748.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=240&w=1260") no-repeat fixed center;
+}
+</style>
+{% endblock %}
+
+{% block banner %}
+<div class="banner position-relative overflow-hidden text-center bg-danger m-0 m-md-5">
+    <div class="col-md-5 p-lg-5 mx-auto my-5 bg-dark">
+        <h1 class="display-5 font-weight-bold text-light">Вход</h1>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="row px-0 flex-column overflow-hidden my-4">
+    <div class="bg-dark  text-white overflow-hidden  col-12 col-md-5 p-5 mb-2 mx-auto">
+        <div class="my-3 py-3">
+            <form class='form' action="{% url 'account:login' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" aria-describedby="email-help" class="form-control" id="email"
+                        placeholder="Введите свою почту" name='email'>
+                    <small id="email-help" class="form-text text-muted">{{form.email.errors}}</small>
+
+                </div>
+                <div class="form-group">
+                    <label for="password1">Пароль</label>
+                    <input type="password" aria-describedby="pass1-help" class="form-control" id="password1"
+                        placeholder="Введите свой пароль" name='password'>
+                    <small id="pass1-help" class="form-text text-muted">{{form.password.errors}}</small>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

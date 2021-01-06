@@ -42,8 +42,10 @@ INSTALLED_APPS = [
 
 
     # apps
+    'src.portfolios',
     'src.accounts',
     'src.posts',
+    'src.teams',
 ]
 
 MIDDLEWARE = [

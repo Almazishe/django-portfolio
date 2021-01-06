@@ -11,7 +11,7 @@ def send_confirmation_email(request, user):
     ''' Send email to user after registrations to confirm account '''
 
     current_site = get_current_site(request)
-    mail_subject = 'Activate your account on Montessori Kazakhstan.'
+    mail_subject = 'Activate your account on Portfolio project.'
     message = render_to_string('accounts/email/activate.html', {
         'user': user,
         'domain': current_site.domain,
@@ -19,7 +19,6 @@ def send_confirmation_email(request, user):
         'token': account_activation_token.make_token(user),
     })
     to_email = user.email
-    print(to_email)
 
     send_mail(
         subject=mail_subject,

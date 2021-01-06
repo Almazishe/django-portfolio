@@ -9,6 +9,8 @@ from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 from utils.models import BaseDateModel
 from utils.views import get_path
 
+from teams.models import Team
+
 #Модель юзера.
 User = get_user_model()
 
@@ -34,7 +36,12 @@ class Post(BaseDateModel, models.Model):
     description = models.TextField('Описание')
 
     owner = models.ForeignKey(
-        User, related_name='posts', verbose_name='Владелец', on_delete=models.SET_NULL, null=True)
+        User, related_name='posts', verbose_name='Владелец', on_delete=models.SET_NULL, null=True, blank=True)
+
+    team = models.ForeignKey(
+        Team, related_name='posts', verbose_name='Команда',
+        on_delete=models.CASCADE, null=True, blank=True, default=None
+    )
 
     tags = TaggableManager(
         through=UUIDTaggedItem,

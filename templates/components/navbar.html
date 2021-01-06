@@ -1,14 +1,32 @@
 <nav class="site-header sticky-top py-1 bg-dark">
-    <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 font-weight-bold text-light" href="#" aria-label="Product" style='font-size: 25px;'>
+    <div class="collapse navbar-collapse container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2 font-weight-bold text-light" href="{% url 'post:list' %}" aria-label="Product"
+            style='font-size: 25px;'>
             TP
         </a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Tour</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Product</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Features</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Enterprise</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Support</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Pricing</a>
-        <a class="py-2 d-none d-md-inline-block text-light" href="#">Cart</a>
+        <a class="navbar-link py-2 d-none d-md-inline-block text-light pt-2" href="{% url 'post:list' %}">Новости</a>
+        <a class="navbar-link py-2 d-none d-md-inline-block text-light pt-2" href="#">Запросы</a>
+        <a class="navbar-link py-2 d-none d-md-inline-block text-light pt-2" href="#">Чаты</a>
+
+        {% if not request.user.is_authenticated %}
+        <button class="btn btn-link dropdown-toggle py-2 d-none d-md-inline-block text-light align-top" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Войти
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'account:login' %}">Войти</a>
+            <a class="dropdown-item" href="{% url 'account:registration' %}">Регистрация</a>
+        </div>
+        {% else %}
+        <button class="btn btn-link dropdown-toggle py-2 d-none d-md-inline-block text-light align-top" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ request.user.full_name }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Профиль</a>
+            <a class="dropdown-item" href="#">Настройка</a>
+            <a class="dropdown-item" href="{% url 'account:logout' %}">Выход</a>
+        </div>
+        {% endif %}
     </div>
 </nav>
