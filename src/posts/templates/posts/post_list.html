@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load list_item_color %}
+
+
+{% block banner %}
+<div class="position-relative overflow-hidden text-center bg-danger m-0 m-md-5">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-5 font-weight-bold text-light">Portfolio project</h1>
+        <p class="lead font-weight-normal text-white-50">find your team</p>
+        <a class="btn btn-outline-light" href="#">find team</a>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="row px-0 flex-column overflow-hidden" style="max-height: {% max_height post_list %}px">
+    {% for post in post_list %}
+    <div
+        class="bg-{% get_color index=forloop.counter %} text-center text-white overflow-hidden  col-12 col-md-5 p-1 mb-2 mx-auto">
+        <img src="{{ post.img.url }}"
+            alt="OMG there is no image sorry =(" width="100%">
+        <div class="my-3 py-3">
+            <div class="d-flex justify-content-center">
+                <h2 class="post_title mr-3">{{ post.title }}</h2>
+                |
+                <span class='text-secondary ml-3'>@{{post.owner.full_name}} </span>
+            </div>
+            <p class="post_description">{{ post.description }}</p>
+            <p>
+                {% for tag in post.tags.all %}
+                <span class="hashtag px-1">
+                    #{{tag}}
+                </span>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
